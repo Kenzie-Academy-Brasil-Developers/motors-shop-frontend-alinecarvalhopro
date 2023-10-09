@@ -94,4 +94,4 @@ table {
 --color-randomProfile-12: #30007D;
 
 }
-`
+`;
