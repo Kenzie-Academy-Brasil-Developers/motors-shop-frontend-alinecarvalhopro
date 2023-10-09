@@ -1,7 +1,8 @@
 import { ButtonContainer } from "./button.style";
 
-interface ButtonProps {
+interface IButtonProps {
   title: string;
+  width?: string;
   margin?: string;
   borderColor?: string;
   backgroundColor?: string;
@@ -13,6 +14,7 @@ interface ButtonProps {
 
 const Button = ({
   title,
+  width,
   margin,
   borderColor,
   backgroundColor,
@@ -21,11 +23,12 @@ const Button = ({
   loading,
   onClickHandler,
   ...props
-}: ButtonProps) => {
+}: IButtonProps) => {
   return (
     <ButtonContainer
       {...props}
       title={title}
+      width={width}
       margin={margin}
       borderColor={borderColor}
       backgroundColor={backgroundColor}

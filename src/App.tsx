@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <h1>Projeto Motors Shop</h1>;
+      <h1>Projeto Motors Shop</h1>
     </>
   );
 }
