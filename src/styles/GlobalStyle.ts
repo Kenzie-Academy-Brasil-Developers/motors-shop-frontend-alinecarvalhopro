@@ -92,6 +92,5 @@ table {
 --color-randomProfile-10: #6100FF;
 --color-randomProfile-11: #5700E3;
 --color-randomProfile-12: #30007D;
-
 }
 `;

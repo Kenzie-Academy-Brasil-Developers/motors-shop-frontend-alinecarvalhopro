@@ -8,6 +8,12 @@ interface TextProps {
   color?: string;
 }
 
+interface HeadingProps {
+  margin?: string;
+  fontWeight?: string;
+  fontSize?: string;
+}
+
 const BaseText = styled.text<TextProps>`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 
@@ -27,4 +33,13 @@ const TextBody2 = styled(BaseText)<TextProps>`
   ${(props) =>
     props.color ? `color: ${props.color};` : "color: var(--color-greyScale-2);"}
 `;
-export { TextError, TextBody2 };
+
+const HeadingH3 = styled.h3<HeadingProps>`
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+
+  font-family: 'Lexend', sans-serif;
+  color: var(--color-greyScale-1);
+  ${(props) => props.fontSize}
+  ${(props) => props.fontWeight}
+`;
+export { TextError, TextBody2, HeadingH3 };
