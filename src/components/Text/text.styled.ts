@@ -5,6 +5,7 @@ interface TextProps {
   margin?: string;
   fontWeight?: string;
   fontSize?: string;
+  color?: string;
 }
 
 const BaseText = styled.text<TextProps>`
@@ -20,5 +21,10 @@ const TextError = styled(BaseText)<TextProps>`
   color: var(--color-feedback-alert-1);
 `;
 
-
-export { TextError };
+const TextBody2 = styled(BaseText)<TextProps>`
+  font-weight: 400;
+  font-size: 14px;
+  ${(props) =>
+    props.color ? `color: ${props.color};` : "color: var(--color-greyScale-2);"}
+`;
+export { TextError, TextBody2 };
