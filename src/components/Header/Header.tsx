@@ -3,7 +3,6 @@ import { StyledHeader } from "./header.styled";
 import Logo from "../../assets/logo.png";
 import MenuButton from "../../assets/menu.svg";
 import CloseMenuButton from "../../assets/cross.svg";
-import { TextBody1 } from "../Text/text.styled";
 import Button from "../Button/Button";
 
 export const Header = () => {
@@ -44,7 +43,14 @@ export const Header = () => {
       </nav>
       {menuOpen && (
         <div className="mobileMenu">
-          <TextBody1>Fazer Login</TextBody1>
+          <Button
+            width="133px"
+            backgroundColor="var(--color-whiteFixed)"
+            borderColor="var(--color-whiteFixed)"
+            textColor="var(--color-greyScale-0)"
+            backgroundColorHover="var(--color-greyScale-0)"
+            title="Fazer Login"
+          />
           <Button
             margin="16px 0"
             backgroundColor="var(--color-whiteFixed)"
