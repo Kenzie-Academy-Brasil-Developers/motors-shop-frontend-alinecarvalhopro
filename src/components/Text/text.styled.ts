@@ -18,6 +18,8 @@ const BaseText = styled.text<TextProps>`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 
   font-family: 'Inter', sans-serif;
+  ${(props) =>
+    props.color ? `color: ${props.color};` : "color: var(--color-greyScale-2);"}
 `;
 
 const TextError = styled(BaseText)<TextProps>`
@@ -27,11 +29,14 @@ const TextError = styled(BaseText)<TextProps>`
   color: var(--color-feedback-alert-1);
 `;
 
+const TextBody1 = styled(BaseText)<TextProps>`
+  font-weight: 600;
+  font-size: 16px;
+`;
+
 const TextBody2 = styled(BaseText)<TextProps>`
   font-weight: 400;
   font-size: 14px;
-  ${(props) =>
-    props.color ? `color: ${props.color};` : "color: var(--color-greyScale-2);"}
 `;
 
 const HeadingH3 = styled.h3<HeadingProps>`
@@ -42,4 +47,4 @@ const HeadingH3 = styled.h3<HeadingProps>`
   ${(props) => props.fontSize}
   ${(props) => props.fontWeight}
 `;
-export { TextError, TextBody2, HeadingH3 };
+export { TextError, TextBody1, TextBody2, HeadingH3 };

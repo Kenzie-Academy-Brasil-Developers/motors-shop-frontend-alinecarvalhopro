@@ -6,7 +6,6 @@ export const StyledFooter = styled.footer`
 
   background-color: #000000;
 
-  position: absolute;
   bottom: 0;
   left: 0;
 
@@ -19,7 +18,5 @@ export const StyledFooter = styled.footer`
     height: 140px;
 
     flex-direction: row;
-
-    position: fixed;
   }
 `;

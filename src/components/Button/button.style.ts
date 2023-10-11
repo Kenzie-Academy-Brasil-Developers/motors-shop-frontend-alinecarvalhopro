@@ -7,6 +7,7 @@ interface ButtonContainerProps {
   backgroundColor?: string;
   backgroundColorHover?: string;
   textColor?: string;
+  textColorHover?: string;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -35,6 +36,10 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
       props.backgroundColorHover
         ? `background-color: ${props.backgroundColorHover};`
         : "background-color: var(--color-brand-2);"}
+    ${(props) =>
+      props.textColorHover
+        ? `color: ${props.textColorHover};`
+        : "color: var(--color-whiteFixed);"}
   }
 
   font-family: "Inter", sans-serif;
