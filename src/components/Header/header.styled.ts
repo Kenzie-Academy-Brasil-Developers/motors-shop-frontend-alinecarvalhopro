@@ -32,7 +32,7 @@ export const StyledHeader = styled.header`
     }
 
     .webMenu {
-      width: 313px;
+      width: 0;
 
       margin-bottom: 300px;
 
@@ -66,7 +66,13 @@ export const StyledHeader = styled.header`
     .menuHamburguer {
       margin-bottom: 300px;
     }
+
+    .mobileMenu {
+      margin-top: -300px;
+    }
     .webMenu {
+      min-width: 313px;
+
       margin-right: 1.5rem;
       position: absolute;
       top: 0;
