@@ -15,11 +15,11 @@ interface HeadingProps {
 }
 
 const BaseText = styled.p<TextProps>`
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  margin: ${(props) => (props.margin ? props.margin : "0")};
 
-  font-family: 'Inter', sans-serif;
-  ${(props) =>
-    props.color ? `color: ${props.color};` : "color: var(--color-greyScale-2);"}
+  font-family: "Inter", sans-serif;
+  color: ${(props) =>
+    props.color ? props.color : "color: var(--color-greyScale-2)"};
 `;
 
 const TextError = styled(BaseText)<TextProps>`
@@ -39,12 +39,21 @@ const TextBody2 = styled(BaseText)<TextProps>`
   font-size: 14px;
 `;
 
-const HeadingH3 = styled.h3<HeadingProps>`
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+const HeadingH2 = styled.h2<HeadingProps>`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
 
   font-family: 'Lexend', sans-serif;
   color: var(--color-greyScale-1);
-  ${(props) => props.fontSize}
-  ${(props) => props.fontWeight}
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
 `;
-export { TextError, TextBody1, TextBody2, HeadingH3 };
+
+const HeadingH3 = styled.h3<HeadingProps>`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+
+  font-family: 'Lexend', sans-serif;
+  color: var(--color-greyScale-1);
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
+`;
+export { TextError, TextBody1, TextBody2, HeadingH2, HeadingH3 };
