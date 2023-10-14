@@ -4,11 +4,12 @@ interface IButtonProps {
   title: string;
   width?: string;
   margin?: string;
-  borderColor?: string;
-  backgroundColor?: string;
-  backgroundColorHover?: string;
-  textColor?: string;
+  bordercolor?: string;
+  backgroundcolor?: string;
+  backgroundcolorhover?: string;
+  textcolor?: string;
   loading?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
   onClickHandler?: () => void;
 }
 
@@ -16,11 +17,12 @@ const Button = ({
   title,
   width,
   margin,
-  borderColor,
-  backgroundColor,
-  backgroundColorHover,
-  textColor,
+  bordercolor,
+  backgroundcolor,
+  backgroundcolorhover,
+  textcolor,
   loading,
+  type,
   onClickHandler,
   ...props
 }: IButtonProps) => {
@@ -30,10 +32,11 @@ const Button = ({
       title={title}
       width={width}
       margin={margin}
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
-      backgroundColorHover={backgroundColorHover}
-      textColor={textColor}
+      bordercolor={bordercolor}
+      backgroundcolor={backgroundcolor}
+      backgroundcolorhover={backgroundcolorhover}
+      textcolor={textcolor}
+      type={type}
       onClick={onClickHandler}
     >
       {title}

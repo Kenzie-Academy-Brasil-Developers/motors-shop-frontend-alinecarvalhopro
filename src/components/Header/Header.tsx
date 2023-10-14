@@ -13,54 +13,54 @@ export const Header = () => {
 
   return (
     <StyledHeader>
-      <nav className="navBar">
-        <img className="logo" src={Logo} />
-        <div className="webMenu">
-          <Button
-            width="133px"
-            margin="16px 0"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-whiteFixed)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
-            title="Fazer Login"
-          />
-          <Button
-            width="133px"
-            margin="16px 0"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-greyScale-4)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
-            title="Cadastrar"
-          />
-        </div>
-        <img
-          className={"menuHamburguer"}
-          src={menuOpen ? CloseMenuButton : MenuButton}
-          onClick={toggleMenu}
+    <nav className="navBar">
+      <img className="logo" src={Logo} />
+      <div className="webMenu">
+        <Button
+          width="133px"
+          margin="16px 0"
+          backgroundcolor="var(--color-whiteFixed)"
+          bordercolor="var(--color-whiteFixed)"
+          textcolor="var(--color-greyScale-0)"
+          backgroundcolorhover="var(--color-greyScale-0)"
+          title="Fazer Login"
         />
-      </nav>
-      {menuOpen && (
-        <div className="mobileMenu">
-          <Button
-            width="133px"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-whiteFixed)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
-            title="Fazer Login"
-          />
-          <Button
-            margin="16px 0"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-greyScale-4)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
-            title="Cadastrar"
-          />
-        </div>
-      )}
-    </StyledHeader>
+        <Button
+          width="133px"
+          margin="16px 0"
+          backgroundcolor="var(--color-whiteFixed)"
+          bordercolor="var(--color-greyScale-4)"
+          textcolor="var(--color-greyScale-0)"
+          backgroundcolorhover="var(--color-greyScale-0)"
+          title="Cadastrar"
+        />
+      </div>
+      <img
+        className={"menuHamburguer"}
+        src={menuOpen ? CloseMenuButton : MenuButton}
+        onClick={toggleMenu}
+      />
+    </nav>
+    {menuOpen && (
+      <div className="mobileMenu">
+        <Button
+          width="133px"
+          backgroundcolor="var(--color-whiteFixed)"
+          bordercolor="var(--color-whiteFixed)"
+          textcolor="var(--color-greyScale-0)"
+          backgroundcolorhover="var(--color-greyScale-0)"
+          title="Fazer Login"
+        />
+        <Button
+          margin="16px 0"
+          backgroundcolor="var(--color-whiteFixed)"
+          bordercolor="var(--color-greyScale-4)"
+          textcolor="var(--color-greyScale-0)"
+          backgroundcolorhover="var(--color-greyScale-0)"
+          title="Cadastrar"
+        />
+      </div>
+    )}
+  </StyledHeader>
   );
 };
