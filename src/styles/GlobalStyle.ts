@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
 /* Reset Style */
-html, body, h3 {
+html, body, h3, fieldset {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -16,6 +16,7 @@ html, body, h3 {
 --color-brand-3: #B0A6F0;
 --color-brand-4: #EDEAFD;
 
+--color-blackFixed: #000000;
 --color-greyScale-0: #0B0D0D;
 --color-greyScale-1: #212529;
 --color-greyScale-2: #495057;
@@ -50,6 +51,9 @@ html, body, h3 {
 --color-randomProfile-11: #5700E3;
 --color-randomProfile-12: #30007D;
 }
+body {
+  background-color: var(--color-greyScale-7);
+}
 
 /* Action Cursor  */
 input {
@@ -61,6 +65,8 @@ button {
 }
 
 input:disabled, button:disabled {
-cursor: not-allowed
+  cursor: not-allowed
 }
 `;
+
+export default GlobalStyle;
