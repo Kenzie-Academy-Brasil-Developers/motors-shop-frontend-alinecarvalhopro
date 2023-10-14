@@ -14,7 +14,7 @@ interface HeadingProps {
   fontSize?: string;
 }
 
-const BaseText = styled.text<TextProps>`
+const BaseText = styled.p<TextProps>`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 
   font-family: 'Inter', sans-serif;
