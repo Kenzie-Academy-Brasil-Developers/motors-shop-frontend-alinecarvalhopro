@@ -2,14 +2,14 @@ import { ForwardedRef, InputHTMLAttributes, forwardRef } from "react";
 import { StyledFieldset } from "./fieldset.styled";
 import { StyledLabel } from "./label.styled";
 import { StyledInput } from "./input.styled";
-import { TextError } from "../Text/text.styled";
+import { TextError } from "../../styles/Text/text.styled";
 
 interface InputContainerProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   errorMessage?: string;
   hasError?: boolean;
   width?: string;
-  margin?: string;
+  marginfieldset?: string;
 }
 
 const InputContainer = forwardRef(
@@ -17,7 +17,7 @@ const InputContainer = forwardRef(
     {
       hasError,
       width,
-      margin,
+      marginfieldset,
       type,
       id,
       label,
@@ -27,12 +27,11 @@ const InputContainer = forwardRef(
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     return (
-      <StyledFieldset>
+      <StyledFieldset marginfieldset={marginfieldset}>
         <StyledLabel>{label}</StyledLabel>
         <StyledInput
           hasError={hasError}
           width={width}
-          margin={margin}
           type={type}
           ref={ref}
           {...rest}

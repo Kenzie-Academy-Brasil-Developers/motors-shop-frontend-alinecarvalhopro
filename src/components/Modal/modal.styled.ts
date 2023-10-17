@@ -11,7 +11,7 @@ export const StyledModalContainer = styled.div`
   max-width: 100%;
   height: 100%;
 
-  background-color: #00000080;
+  background-color: var(--color-blackFixed);
 
   position: absolute;
   top: 0;

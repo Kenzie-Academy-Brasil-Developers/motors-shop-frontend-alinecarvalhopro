@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCommentCard = styled.li`
-  border: 1px solid red;
+  background-color: var(--color-whiteFixed);
 
   list-style: none;
 

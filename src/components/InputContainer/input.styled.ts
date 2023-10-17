@@ -3,15 +3,12 @@ import styled from "styled-components";
 interface InputProps {
   hasError?: boolean;
   width?: string;
-  margin?: string;
 }
 
 export const StyledInput = styled.input<InputProps>`
   ${(props) =>
-    props.width ? `width: ${props.width};` : `width: calc(100% - 32px);`}
+    (props.width) ? `width: ${props.width};` : `width: calc(100% - 32px);`}
   height: 48px;
-
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 
   padding: 0 16px;
 

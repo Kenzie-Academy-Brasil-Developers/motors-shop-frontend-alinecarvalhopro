@@ -1,5 +1,5 @@
 import { ForwardedRef, SelectHTMLAttributes, forwardRef } from "react";
-import { TextError } from "../Text/text.styled";
+import { TextError } from "../../styles/Text/text.styled";
 import { StyledFieldset } from "../InputContainer/fieldset.styled";
 import { StyledLabel } from "../InputContainer/label.styled";
 import { StyledSelect } from "./select.styled";

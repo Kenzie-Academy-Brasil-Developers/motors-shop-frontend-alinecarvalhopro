@@ -1,4 +1,4 @@
-import { TextBody2 } from "../Text/text.styled";
+import { TextBody2 } from "../../styles/Text/text.styled";
 import TagUser from "../fragments/TagUser/TagUser";
 import { StyledCommentCard } from "./commentCard.styled";
 

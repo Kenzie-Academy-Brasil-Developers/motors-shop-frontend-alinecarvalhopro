@@ -1,16 +1,18 @@
+import Footer from "../../components/Footer/Footer";
 import { Header, HeaderMenu } from "../../components/Header/Header";
+import RegisterForm from "../../components/Forms/RegisterForm/RegisterForm";
 import { StyledRegisterLoginMain } from "../../styles/SheredRegisterLogin/registerLoginMain.styled";
-import LoginForm from "../../components/Forms/LoginForm/LoginForm";
 
-const Login = () => {
+const Register = () => {
   return (
     <>
       <Header><HeaderMenu/></Header>
       <StyledRegisterLoginMain>
-        <LoginForm />
+        <RegisterForm />
       </StyledRegisterLoginMain>
+      <Footer />
     </>
   );
 };
 
-export default Login;
+export default Register;

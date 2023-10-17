@@ -1,6 +1,6 @@
 import { StyledCardProduct } from "./productCard.styled";
 import NoImage from "../../assets/noImage.png";
-import { HeadingH3, TextBody2 } from "../Text/text.styled";
+import { HeadingH3, TextBody2 } from "../../styles/Text/text.styled";
 import TagUser from "../fragments/TagUser/TagUser";
 import TagDetail from "../fragments/TagDatail/TagDetail";
 

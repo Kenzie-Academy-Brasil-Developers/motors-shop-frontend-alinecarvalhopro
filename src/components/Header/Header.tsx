@@ -1,38 +1,56 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { StyledHeader } from "./header.styled";
 import Logo from "../../assets/logo.png";
 import MenuButton from "../../assets/menu.svg";
 import CloseMenuButton from "../../assets/cross.svg";
 import Button from "../Button/Button";
+import { useUserContext } from "../../providers/UserContext";
 
-export const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
+interface IHeaderProps {
+  children: ReactNode;
+}
+export const Header = ({children}: IHeaderProps) => {
   return (
     <StyledHeader>
       <nav className="navBar">
         <img className="logo" src={Logo} />
-        <div className="webMenu">
+        {children}
+      </nav>
+    </StyledHeader>
+  );
+};
+
+export default Header;
+
+export const HeaderMenu = () => {
+  const { navigate } = useUserContext();
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  return (
+    <>
+            <div className="webMenu">
           <Button
             width="133px"
             margin="16px 0"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-whiteFixed)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
+            backgroundcolor="var(--color-whiteFixed)"
+            bordercolor="var(--color-whiteFixed)"
+            textcolor="var(--color-greyScale-0)"
+            backgroundcolorhover="var(--color-greyScale-0)"
             title="Fazer Login"
+            onClickHandler={() => navigate("/")}
           />
           <Button
             width="133px"
             margin="16px 0"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-greyScale-4)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
+            backgroundcolor="var(--color-whiteFixed)"
+            bordercolor="var(--color-greyScale-4)"
+            textcolor="var(--color-greyScale-0)"
+            backgroundcolorhover="var(--color-greyScale-0)"
             title="Cadastrar"
+            onClickHandler={() => navigate("/register")}
           />
         </div>
         <img
@@ -40,27 +58,29 @@ export const Header = () => {
           src={menuOpen ? CloseMenuButton : MenuButton}
           onClick={toggleMenu}
         />
-      </nav>
       {menuOpen && (
         <div className="mobileMenu">
           <Button
             width="133px"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-whiteFixed)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
+            backgroundcolor="var(--color-whiteFixed)"
+            bordercolor="var(--color-whiteFixed)"
+            textcolor="var(--color-greyScale-0)"
+            backgroundcolorhover="var(--color-greyScale-0)"
             title="Fazer Login"
-          />
+            onClickHandler={() => navigate("/")}
+            />
           <Button
             margin="16px 0"
-            backgroundColor="var(--color-whiteFixed)"
-            borderColor="var(--color-greyScale-4)"
-            textColor="var(--color-greyScale-0)"
-            backgroundColorHover="var(--color-greyScale-0)"
+            backgroundcolor="var(--color-whiteFixed)"
+            bordercolor="var(--color-greyScale-4)"
+            textcolor="var(--color-greyScale-0)"
+            backgroundcolorhover="var(--color-greyScale-0)"
             title="Cadastrar"
-          />
+            onClickHandler={() => navigate("/register")}
+            />
         </div>
       )}
-    </StyledHeader>
-  );
-};
+    </>
+  )
+}
+

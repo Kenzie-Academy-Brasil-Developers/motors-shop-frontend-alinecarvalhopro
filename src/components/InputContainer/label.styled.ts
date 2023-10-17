@@ -5,7 +5,7 @@ interface LabelProps {
 }
 
 export const StyledLabel = styled.label<LabelProps>`
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 
   font-family: 'Inter', sans-serif;
   font-weight: 500;
