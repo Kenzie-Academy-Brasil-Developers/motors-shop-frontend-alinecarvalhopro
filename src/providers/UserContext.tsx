@@ -24,7 +24,7 @@ interface IUserContext {
   navigate: NavigateFunction;
 }
 
-interface IUser {
+export interface IUser {
   id: string;
   name: string;
   email: string;

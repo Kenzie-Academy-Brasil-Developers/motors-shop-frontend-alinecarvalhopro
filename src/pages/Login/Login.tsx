@@ -7,11 +7,13 @@ import Footer from "../../components/Footer/Footer";
 const Login = () => {
   return (
     <StyledPageContainer>
-      <Header><HeaderMenu/></Header>
+      <Header>
+        <HeaderMenu />
+      </Header>
       <StyledRegisterLoginMain>
         <LoginForm />
       </StyledRegisterLoginMain>
-      <Footer/>
+      <Footer />
     </StyledPageContainer>
   );
 };
