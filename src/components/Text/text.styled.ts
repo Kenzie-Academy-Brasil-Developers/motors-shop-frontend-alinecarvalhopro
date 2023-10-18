@@ -43,7 +43,7 @@ const HeadingH2 = styled.h2<HeadingProps>`
   margin: ${(props) => (props.margin ? props.margin : "0")};
 
   font-family: 'Lexend', sans-serif;
-  color: var(--color-greyScale-1);
+  color: ${(props) => (props.color ? props.color : "var(--color-greyScale-1)")};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
 `;
@@ -52,7 +52,7 @@ const HeadingH3 = styled.h3<HeadingProps>`
   margin: ${(props) => (props.margin ? props.margin : "0")};
 
   font-family: 'Lexend', sans-serif;
-  color: var(--color-greyScale-1);
+  color: ${(props) => (props.color ? props.color : "var(--color-greyScale-1)")};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
 `;
