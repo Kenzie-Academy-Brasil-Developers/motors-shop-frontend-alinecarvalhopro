@@ -4,6 +4,7 @@ import Logo from "../../assets/logo.png";
 import MenuButton from "../../assets/menu.svg";
 import CloseMenuButton from "../../assets/cross.svg";
 import Button from "../Button/Button";
+import { useUserContext } from "../../providers/UserContext";
 
 interface IHeaderProps {
   children: ReactNode;
@@ -22,6 +23,7 @@ export const Header = ({children}: IHeaderProps) => {
 export default Header;
 
 export const HeaderMenu = () => {
+  const { navigate } = useUserContext();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -38,6 +40,7 @@ export const HeaderMenu = () => {
             textcolor="var(--color-greyScale-0)"
             backgroundcolorhover="var(--color-greyScale-0)"
             title="Fazer Login"
+            onClickHandler={() => navigate("/")}
           />
           <Button
             width="133px"
@@ -47,6 +50,7 @@ export const HeaderMenu = () => {
             textcolor="var(--color-greyScale-0)"
             backgroundcolorhover="var(--color-greyScale-0)"
             title="Cadastrar"
+            onClickHandler={() => navigate("/register")}
           />
         </div>
         <img
@@ -63,6 +67,7 @@ export const HeaderMenu = () => {
             textcolor="var(--color-greyScale-0)"
             backgroundcolorhover="var(--color-greyScale-0)"
             title="Fazer Login"
+            onClickHandler={() => navigate("/")}
             />
           <Button
             margin="16px 0"
@@ -71,6 +76,7 @@ export const HeaderMenu = () => {
             textcolor="var(--color-greyScale-0)"
             backgroundcolorhover="var(--color-greyScale-0)"
             title="Cadastrar"
+            onClickHandler={() => navigate("/register")}
             />
         </div>
       )}

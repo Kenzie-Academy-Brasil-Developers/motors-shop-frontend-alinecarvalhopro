@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
 /* Reset Style */
-html, body, h3, fieldset {
+html, body, h3, fieldset, ul {
   width: 100%;
   margin: 0;
   padding: 0;

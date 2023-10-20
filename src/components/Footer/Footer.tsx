@@ -1,4 +1,4 @@
-import { TextBody2 } from "../Text/text.styled";
+import { TextBody2 } from "../../styles/Text/text.styled";
 import { StyledFooter } from "./footer.styled";
 import Logo from "../../assets/imageFooter.png";
 import ToTopButton from "./ToTopButton";

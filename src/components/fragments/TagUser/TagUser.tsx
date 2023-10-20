@@ -1,4 +1,4 @@
-import { TextBody2 } from "../../Text/text.styled";
+import { TextBody2 } from "../../../styles/Text/text.styled";
 import { StyledTagUser } from "./tagUser.styled";
 
 interface TagUserProps {

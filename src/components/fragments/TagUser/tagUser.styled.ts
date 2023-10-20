@@ -7,8 +7,6 @@ interface UserTagProps {
 export const StyledTagUser = styled.div<UserTagProps>`
   max-width: 200px;
 
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-
   display: flex;
   align-items: center;
   justify-content: start;

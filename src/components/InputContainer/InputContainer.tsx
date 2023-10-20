@@ -2,7 +2,7 @@ import { ForwardedRef, InputHTMLAttributes, forwardRef } from "react";
 import { StyledFieldset } from "./fieldset.styled";
 import { StyledLabel } from "./label.styled";
 import { StyledInput } from "./input.styled";
-import { TextError } from "../Text/text.styled";
+import { TextError } from "../../styles/Text/text.styled";
 
 interface InputContainerProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;

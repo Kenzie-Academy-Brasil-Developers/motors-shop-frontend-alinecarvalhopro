@@ -1,4 +1,4 @@
-import { HeadingH3 } from "../Text/text.styled";
+import { HeadingH3 } from "../../styles/Text/text.styled";
 import CloseModalButton from "./closeModalButton";
 import { StyledModal, StyledModalContainer } from "./modal.styled";
 

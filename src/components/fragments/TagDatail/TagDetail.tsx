@@ -1,15 +1,16 @@
-import { TextBody2 } from "../../Text/text.styled";
-import { StyledTagUser } from "./tagDetail.styled";
+import { TextBody2 } from "../../../styles/Text/text.styled";
+import { StyledTagDetail } from "./tagDetail.styled";
 
-interface TagUserProps {
+interface TagDetailProps {
   children: React.ReactNode;
+  margin?: string;
 }
 
-const TagDetail = ({ children }: TagUserProps) => {
+const TagDetail = ({ children, margin }: TagDetailProps) => {
   return (
-    <StyledTagUser>
-      <TextBody2 color="var(--color-brand-1)">{children}</TextBody2>
-    </StyledTagUser>
+    <StyledTagDetail margin={margin}>
+      <TextBody2  color="var(--color-brand-1)">{children}</TextBody2>
+    </StyledTagDetail>
   );
 };
 
