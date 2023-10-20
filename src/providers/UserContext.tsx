@@ -1,10 +1,4 @@
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -20,8 +14,11 @@ interface IUserContext {
   submitRegister: (formData: IRegisterFormData) => Promise<void>;
   submitLogin: (formData: ILoginFormData) => Promise<void>;
   logout: () => void;
+  autoLogin: () => Promise<void>;
   user: IUser | null;
   navigate: NavigateFunction;
+  getUserById: (userId: string) => Promise<IUser | undefined>;
+  getLoggedInUser: () => Promise<void>;
 }
 
 export interface IUser {
@@ -95,9 +92,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         sub: string;
       };
       localStorage.setItem("@MOTORSSHOP:TOKEN", data.token);
-      localStorage.setItem("@MOTORSSHOP:USERID", decodedToken.sub);
-      const userData = await getUserById(decodedToken.sub); 
-      setUser(userData!)
+      localStorage.setItem("@MOTORSSHOP:USERID", decodedToken.id);
+      const userData = await getUserById(decodedToken.sub);
+      if (userData) setUser(userData);
       setTimeout(() => {
         navigate("/home");
       }, 2000);
@@ -106,16 +103,26 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  useEffect(() => {
-    const autoLogin = () => {
-      const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
-      const id = localStorage.getItem("@MOTORSSHOP:USERID");
-      if (token) {
-        if (token && id) navigate("/home");
+  const getLoggedInUser = async () => {
+    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+    const id = localStorage.getItem("@MOTORSSHOP:USERID");
+    if (token) {
+      if (token && id) {
+        const response = await getUserById(id);
+        if (response) setUser(response);
       }
-    };
-    autoLogin();
-  }, []);
+    }
+  };
+
+  const autoLogin = async () => {
+    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+    const id = localStorage.getItem("@MOTORSSHOP:USERID");
+    if (token) {
+      if (token && id) {
+        navigate("/home");
+      }
+    }
+  };
 
   const logout = () => {
     localStorage.removeItem("@MOTORSSHOP:TOKEN");
@@ -126,8 +133,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const getUserById = async (userId: string) => {
     try {
-      const {data} = await api.get<IUser>(`/users/${userId}`);
-      return data
+      const { data } = await api.get<IUser>(`/users/${userId}`);
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -135,7 +142,16 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ submitRegister, submitLogin, logout, user, navigate }}
+      value={{
+        submitRegister,
+        submitLogin,
+        logout,
+        user,
+        navigate,
+        getLoggedInUser,
+        getUserById,
+        autoLogin,
+      }}
     >
       {children}
     </UserContext.Provider>

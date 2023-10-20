@@ -75,6 +75,7 @@ export const StyledHeader = styled.header`
       min-width: 313px;
 
       margin-right: 1.5rem;
+
       position: absolute;
       top: 0;
       right: 0;

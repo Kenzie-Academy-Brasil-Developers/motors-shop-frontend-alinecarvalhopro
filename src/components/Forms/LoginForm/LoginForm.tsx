@@ -55,7 +55,7 @@ const LoginForm = () => {
           title={isSubmitted ? "Entrando" : "Entrar"}
         />
         <TextBody2
-          margin="12px"
+          margin="12px 0 0 0"
           fontWeight="500"
           color="var(--color-blackFixed)"
           style={{textAlign: 'center'}}

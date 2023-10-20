@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
-export const StyledTagUser = styled.div`
+interface TagDetailProps {
+  margin?: string;
+}
+
+export const StyledTagDetail = styled.div<TagDetailProps>`
   height: 32px;
+
+  margin: ${(props) => props.margin};
 
   border-radius: 4px;
 

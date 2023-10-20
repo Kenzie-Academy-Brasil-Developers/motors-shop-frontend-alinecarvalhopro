@@ -4,14 +4,14 @@ export const StyledPageContainer = styled.div`
   max-width: 100vw;
   height: 100vh;
 
-  background-color: var(--color-whiteFixed);
+  background-color:  var(--color-greyScale-8);
 
   position: relative;
 
   main {
-    padding: 16px 0;
+    padding: 2rem 0;
 
-    background-color: var(--color-whiteFixed);
+    background-color:  var(--color-greyScale-8);
   }
 
   ul {
@@ -38,7 +38,7 @@ export const StyledPageContainer = styled.div`
       width: calc(100% - 200px);
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: start;
       margin: 0;
     }
   }

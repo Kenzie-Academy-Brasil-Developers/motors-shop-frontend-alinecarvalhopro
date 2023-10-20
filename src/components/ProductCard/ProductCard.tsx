@@ -3,15 +3,25 @@ import NoImage from "../../assets/noImage.png";
 import { HeadingH3, TextBody2 } from "../../styles/Text/text.styled";
 import TagUser from "../fragments/TagUser/TagUser";
 import TagDetail from "../fragments/TagDatail/TagDetail";
-import { useAnnouncementsContext } from "../../providers/AnnouncementsContext";
+import {
+  IAnnoucement,
+} from "../../providers/AnnouncementsContext";
+import { useUserContext } from "../../providers/UserContext";
 
-const ProductCard = () => {
-  const { announcements } = useAnnouncementsContext();
+interface IProductCardPropos {
+  announcements: IAnnoucement[] | [];
+}
+
+const ProductCard = ({ announcements }: IProductCardPropos) => {
+  const { navigate } = useUserContext();
 
   return (
     <>
       {announcements.map((announcement) => (
-        <StyledCardProduct key={announcement.id}>
+        <StyledCardProduct
+          onClick={() => navigate(`/product/${announcement.id}`)}
+          key={announcement.id}
+        >
           <div className="imageBoxProductCard">
             <img
               src={
@@ -36,7 +46,7 @@ const ProductCard = () => {
             </TextBody2>
             <TagUser
               margin="16px 0 0 0"
-              char={announcement.user.name.charAt(0).toLowerCase()}
+              char={announcement.user.name.charAt(0).toUpperCase()}
             >
               {announcement.user.name.split(" ")[0] || ""}{" "}
               {announcement.user.name.split(" ")[1] || ""}

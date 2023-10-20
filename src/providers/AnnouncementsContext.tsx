@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 import { IUser } from "./UserContext";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface IAnnouncementsProviderProps {
   children: ReactNode;
@@ -9,9 +10,10 @@ interface IAnnouncementsProviderProps {
 interface IAnnouncementsContext {
   getAnnouncements: () => Promise<void>;
   announcements: IAnnoucement[] | [];
+  navigate: NavigateFunction;
 }
 
-interface IAnnoucement {
+export interface IAnnoucement {
   id: string;
   brand: string;
   model: string;
@@ -24,15 +26,19 @@ interface IAnnoucement {
   fuel: string;
   images: any;
   comments: object[];
-  user: IUser
+  user: IUser;
 }
 
 export const AnnouncementsContext = createContext<IAnnouncementsContext>(
   {} as IAnnouncementsContext
 );
 
-export const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
-  const [announcements, setAnnouncements] = useState<IAnnoucement[] | [] >([]);
+export const AnnouncementsProvider = ({
+  children,
+}: IAnnouncementsProviderProps) => {
+  const [announcements, setAnnouncements] = useState<IAnnoucement[] | []>([]);
+
+  const navigate = useNavigate();
 
   const getAnnouncements = async () => {
     try {
@@ -44,7 +50,13 @@ export const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps)
   };
 
   return (
-    <AnnouncementsContext.Provider value={{ getAnnouncements, announcements }}>
+    <AnnouncementsContext.Provider
+      value={{
+        getAnnouncements,
+        announcements,
+        navigate,
+      }}
+    >
       {children}
     </AnnouncementsContext.Provider>
   );

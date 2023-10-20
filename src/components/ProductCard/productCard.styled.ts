@@ -9,7 +9,7 @@ export const StyledCardProduct = styled.li`
   display: flex;
   flex-direction: column;
 
-  background-color: var(--color-whiteFixed);
+  background-color:  var(--color-greyScale-8);
 
   .model {
     height: 40px;
@@ -32,6 +32,7 @@ export const StyledCardProduct = styled.li`
     img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
   }

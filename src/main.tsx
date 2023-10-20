@@ -1,12 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "./providers/UserContext.tsx";
+import { AnnouncementsProvider } from "./providers/AnnouncementsContext.tsx";
+import App from "./App.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserProvider>
+        <AnnouncementsProvider>
+          <App />
+        </AnnouncementsProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
