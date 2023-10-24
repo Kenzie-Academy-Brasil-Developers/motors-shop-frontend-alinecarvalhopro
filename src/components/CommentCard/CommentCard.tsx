@@ -1,18 +1,47 @@
+import { IComment } from "../../providers/AnnouncementsContext";
 import { TextBody2 } from "../../styles/Text/text.styled";
 import TagUser from "../fragments/TagUser/TagUser";
 import { StyledCommentCard } from "./commentCard.styled";
 
-const CommentCard = () => {
+interface ICommentCardProps {
+  comments: IComment[] | [];
+}
+
+const CommentCard = ({ comments }: ICommentCardProps) => {
+  const calculateDaysPassed = (dateString: string) => {
+    const date = new Date(dateString);
+    const today = new Date();
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    const timeDifference = Math.abs(today.getTime() - date.getTime());
+    const daysPassed = Math.ceil(timeDifference / oneDay);
+
+    if (daysPassed == 1) {
+      return `• há ${daysPassed} dia`;
+    }
+
+    return `• há ${daysPassed} dias`;
+  };
+
   return (
-    <StyledCommentCard>
-      <TagUser char={"Seller Name".charAt(0).toLowerCase()}>Username</TagUser>
-      <TextBody2 margin="12px 0 0 0">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
-      </TextBody2>
-    </StyledCommentCard>
+    <>
+      {comments.map((comment) => (
+        <StyledCommentCard key={comment.id}>
+          <div className="boxUserDate">
+            <TagUser char={comment.user.name.charAt(0).toUpperCase()}>{comment.user.name}</TagUser>
+            <TextBody2
+              margin="0 0 0 6px"
+              fontSize="12px"
+              color="var(--color-greyScale-3)"
+              fontWeight="400"
+            >
+              {calculateDaysPassed(comment.date)}
+            </TextBody2>
+          </div>
+          <TextBody2 margin="16px 0 0 0">{comment.comment}</TextBody2>
+        </StyledCommentCard>
+      ))}
+    </>
   );
 };
 

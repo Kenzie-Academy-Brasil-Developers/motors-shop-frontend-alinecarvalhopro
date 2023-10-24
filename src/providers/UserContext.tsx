@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { api } from "../services/api";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -14,7 +20,6 @@ interface IUserContext {
   submitRegister: (formData: IRegisterFormData) => Promise<void>;
   submitLogin: (formData: ILoginFormData) => Promise<void>;
   logout: () => void;
-  autoLogin: () => Promise<void>;
   user: IUser | null;
   navigate: NavigateFunction;
   getUserById: (userId: string) => Promise<IUser | undefined>;
@@ -42,19 +47,6 @@ interface IAddress {
   number: string;
   complement: string;
 }
-
-// interface IAnnoucement {
-//   brand: string;
-//   model: string;
-//   list_price: number;
-//   price: number;
-//   year: string;
-//   mileage: number;
-//   description: string;
-//   color: string;
-//   fuel: string;
-//   images: object[];
-// }
 
 interface IUserLoginResponse {
   token: string;
@@ -114,21 +106,21 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  const autoLogin = async () => {
-    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
-    const id = localStorage.getItem("@MOTORSSHOP:USERID");
-    if (token) {
-      if (token && id) {
-        navigate("/home");
+  useEffect(() => {
+    const autoLogin = async () => {
+      const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+      const id = localStorage.getItem("@MOTORSSHOP:USERID");
+      if (!token && !id) {
+        logout();
       }
-    }
-  };
+    };
+    autoLogin();
+  }, []);
 
   const logout = () => {
     localStorage.removeItem("@MOTORSSHOP:TOKEN");
     localStorage.removeItem("@MOTORSSHOP:USERID");
     setUser(null);
-    navigate("/");
   };
 
   const getUserById = async (userId: string) => {
@@ -150,7 +142,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         navigate,
         getLoggedInUser,
         getUserById,
-        autoLogin,
       }}
     >
       {children}

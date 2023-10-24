@@ -4,12 +4,13 @@ export const StyledCardProduct = styled.li`
   min-width: 312px;
   min-height: 350px;
 
-  margin-right: 16px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 
   display: flex;
   flex-direction: column;
 
-  background-color:  var(--color-greyScale-8);
+  background-color: var(--color-greyScale-8);
 
   .model {
     height: 40px;
@@ -34,6 +35,13 @@ export const StyledCardProduct = styled.li`
       height: 100%;
 
       object-fit: cover;
+
+      transition: 0.8s;
+
+    }
+    
+    img:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
   }
 
@@ -71,8 +79,6 @@ export const StyledCardProduct = styled.li`
 
     @media (min-width: 769px) {
       max-width: 312px;
-
-      margin-bottom: 16px;
     }
   }
 `;

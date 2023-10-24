@@ -2,34 +2,42 @@ import Header, { HeaderMenu } from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { HeadingH2 } from "../../styles/Text/text.styled";
 import { useAnnouncementsContext } from "../../providers/AnnouncementsContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Banner from "../../components/Banner/Banner";
 import { StyledPageContainer } from "../../styles/Home/pageConteiner";
 import { useUserContext } from "../../providers/UserContext";
-import TagUser from "../../components/fragments/TagUser/TagUser";
-
+import TagUser, {
+  UserOption,
+} from "../../components/fragments/TagUser/TagUser";
 const Home = () => {
   const { getAnnouncements, announcements } = useAnnouncementsContext();
+  const { getLoggedInUser, user } = useUserContext();
 
-  const { autoLogin, getLoggedInUser, user } = useUserContext();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   useEffect(() => {
     getAnnouncements();
     getLoggedInUser();
-    // autoLogin();
   }, []);
 
   return (
     <StyledPageContainer>
       <Header>
         {user ? (
-          <TagUser
-            char={user.name.charAt(0).toUpperCase()}
-            children={`${user.name.split(" ")[0] || ""} ${
-              user.name.split(" ")[1] || ""
-            }`}
-          />
+          <>
+            <TagUser
+              onClick={toggleMenu}
+              char={user.name.charAt(0).toUpperCase()}
+              children={`${user.name.split(" ")[0] || ""} ${
+                user.name.split(" ")[1] || ""
+              }`}
+            />
+            {menuOpen && <UserOption />}
+          </>
         ) : (
           <HeaderMenu />
         )}

@@ -8,6 +8,7 @@ interface IButtonProps {
   backgroundcolor?: string;
   backgroundcolorhover?: string;
   textcolor?: string;
+  textColorHover?: string;
   loading?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   onClickHandler?: () => void;
@@ -21,6 +22,7 @@ const Button = ({
   backgroundcolor,
   backgroundcolorhover,
   textcolor,
+  textColorHover,
   loading,
   type,
   onClickHandler,
@@ -36,6 +38,7 @@ const Button = ({
       backgroundcolor={backgroundcolor}
       backgroundcolorhover={backgroundcolorhover}
       textcolor={textcolor}
+      textColorHover={textColorHover}
       type={type}
       onClick={onClickHandler}
     >

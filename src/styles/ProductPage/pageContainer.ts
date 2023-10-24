@@ -1,13 +1,27 @@
 import styled from "styled-components";
 
 export const StyledPageContainer = styled.div`
-  min-width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
 
   position: relative;
 
+  .userOptions {
+    min-width: 100vw;
+    background-color: var(--color-whiteFixed);
+
+    position: absolute;
+    top: 80px;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    border-top: 2px solid var(--color-greyScale-6);
+  }
+
   .containerProductInfos {
-    min-width: 100%;
+    max-width: 100%;
 
     position: relative;
 
@@ -28,7 +42,7 @@ export const StyledPageContainer = styled.div`
       height: 355px;
 
       position: absolute;
-      /* background-color: var(--color-whiteFixed); */
+
       border-radius: 4px;
       margin-top: 125px;
 
@@ -37,7 +51,7 @@ export const StyledPageContainer = styled.div`
       justify-content: center;
 
       img {
-        width: 100%;
+        min-width: 100%;
         height: 100%;
 
         border-radius: 4px;
@@ -109,10 +123,11 @@ export const StyledPageContainer = styled.div`
       }
     }
 
-    .boxComments {
+    .boxComments,
+    .boxToComment {
       width: calc(100% - 64px);
 
-      margin: 16px 0;
+      margin-top: 16px;
 
       border-radius: 4px;
 
@@ -124,6 +139,10 @@ export const StyledPageContainer = styled.div`
       flex-direction: column;
     }
 
+    .boxToComment {
+      margin-bottom: 16px;
+    }
+
     footer {
       position: static;
       left: 0;
@@ -132,6 +151,54 @@ export const StyledPageContainer = styled.div`
     }
   }
 
-  @media (min-width: 769px) {
+  @media (min-width: 1024px) {
+    .userOptions {
+      flex-direction: row;
+    }
+
+    .containerProductInfos {
+      align-items: flex-start;
+    }
+    .imageBox {
+      max-width: calc(45% + 32px);
+
+      position: fixed;
+      left: 100px;
+    }
+
+    .productDetails,
+    .productDescription,
+    .boxComments,
+    .boxToComment {
+      max-width: 45%;
+
+      margin-left: 100px;
+    }
+
+    .sellerInfos {
+      max-width: 20%;
+
+      margin: 0;
+
+      position: fixed;
+
+      top: 108px;
+      right: 100px;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .imageBox {
+      max-width: calc(50% + 32px);
+    }
+    .productDetails,
+    .productDescription,
+    .boxComments,
+    .boxToComment {
+      max-width: 50%;
+    }
+    .sellerInfos {
+      max-width: 25%;
+    }
   }
 `;

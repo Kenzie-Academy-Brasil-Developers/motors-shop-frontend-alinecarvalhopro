@@ -8,6 +8,20 @@ export const StyledPageContainer = styled.div`
 
   position: relative;
 
+  .userOptions {
+    min-width: 100vw;
+    background-color: var(--color-whiteFixed);
+
+    position: absolute;
+    top: 80px;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    border-top: 2px solid var(--color-greyScale-6);
+  }
+
   .sellerInformationContainer {
     position: relative;
   }
@@ -24,7 +38,7 @@ export const StyledPageContainer = styled.div`
     .boxSellerInformation {
       width: calc(100% - 96px);
       height: calc(397px - 96px);
-      
+
       margin-top: 165px;
 
       border-radius: 4px;
@@ -34,7 +48,7 @@ export const StyledPageContainer = styled.div`
       position: absolute;
 
       background-color: var(--color-whiteFixed);
-      
+
       .userCharacters {
         width: 104px;
         height: 104px;
@@ -49,6 +63,7 @@ export const StyledPageContainer = styled.div`
       }
 
       .boxSellerNameAndTag {
+        width: calc(100% - 96px);
         margin-top: 16px;
 
         display: flex;
@@ -59,6 +74,7 @@ export const StyledPageContainer = styled.div`
   }
 
   main {
+    width: calc(100% - 16px);
     margin-top: 200px;
 
     padding: 2rem 0;
@@ -94,12 +110,17 @@ export const StyledPageContainer = styled.div`
   }
 
   @media (min-width: 769px) {
-
+    .userOptions {
+      flex-direction: row;
+    }
+    
     .boxSellerInformation {
       max-width: calc(100% - 264px);
     }
 
     main {
+      width: 100%;
+      
       display: flex;
 
       justify-content: center;
@@ -113,7 +134,7 @@ export const StyledPageContainer = styled.div`
 
     ul {
       width: calc(100% - 200px);
-      
+
       margin: 0;
 
       display: flex;
