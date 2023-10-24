@@ -49,6 +49,7 @@ const HeadingH2 = styled.h2<HeadingProps>`
 `;
 
 const HeadingH3 = styled.h3<HeadingProps>`
+  width: auto;
   margin: ${(props) => (props.margin ? props.margin : "0")};
 
   font-family: "Lexend", sans-serif;

@@ -7,10 +7,9 @@ import { useEffect } from "react";
 import { useUserContext } from "../../providers/UserContext";
 
 const Register = () => {
-  const { autoLogin, getLoggedInUser } = useUserContext();
+  const { getLoggedInUser } = useUserContext();
 
   useEffect(() => {
-    autoLogin();
     getLoggedInUser();
   });
   

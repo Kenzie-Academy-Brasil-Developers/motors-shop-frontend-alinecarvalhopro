@@ -9,11 +9,12 @@ import { useUserContext } from "../../providers/UserContext";
 interface IHeaderProps {
   children: ReactNode;
 }
-export const Header = ({children}: IHeaderProps) => {
+export const Header = ({ children }: IHeaderProps) => {
+  const { navigate } = useUserContext();
   return (
     <StyledHeader>
       <nav className="navBar">
-        <img className="logo" src={Logo} />
+        <img onClick={() => navigate("/home")} className="logo" src={Logo} />
         {children}
       </nav>
     </StyledHeader>
@@ -31,33 +32,33 @@ export const HeaderMenu = () => {
   };
   return (
     <>
-            <div className="webMenu">
-          <Button
-            width="133px"
-            margin="16px 0"
-            backgroundcolor="var(--color-whiteFixed)"
-            bordercolor="var(--color-whiteFixed)"
-            textcolor="var(--color-greyScale-0)"
-            backgroundcolorhover="var(--color-greyScale-0)"
-            title="Fazer Login"
-            onClickHandler={() => navigate("/")}
-          />
-          <Button
-            width="133px"
-            margin="16px 0"
-            backgroundcolor="var(--color-whiteFixed)"
-            bordercolor="var(--color-greyScale-4)"
-            textcolor="var(--color-greyScale-0)"
-            backgroundcolorhover="var(--color-greyScale-0)"
-            title="Cadastrar"
-            onClickHandler={() => navigate("/register")}
-          />
-        </div>
-        <img
-          className={"menuHamburguer"}
-          src={menuOpen ? CloseMenuButton : MenuButton}
-          onClick={toggleMenu}
+      <div className="webMenu">
+        <Button
+          width="133px"
+          margin="16px 0"
+          backgroundcolor="var(--color-whiteFixed)"
+          bordercolor="var(--color-whiteFixed)"
+          textcolor="var(--color-greyScale-0)"
+          backgroundcolorhover="var(--color-greyScale-0)"
+          title="Fazer Login"
+          onClickHandler={() => navigate("/")}
         />
+        <Button
+          width="133px"
+          margin="16px 0"
+          backgroundcolor="var(--color-whiteFixed)"
+          bordercolor="var(--color-greyScale-4)"
+          textcolor="var(--color-greyScale-0)"
+          backgroundcolorhover="var(--color-greyScale-0)"
+          title="Cadastrar"
+          onClickHandler={() => navigate("/register")}
+        />
+      </div>
+      <img
+        className={"menuHamburguer"}
+        src={menuOpen ? CloseMenuButton : MenuButton}
+        onClick={toggleMenu}
+      />
       {menuOpen && (
         <div className="mobileMenu">
           <Button
@@ -68,7 +69,7 @@ export const HeaderMenu = () => {
             backgroundcolorhover="var(--color-greyScale-0)"
             title="Fazer Login"
             onClickHandler={() => navigate("/")}
-            />
+          />
           <Button
             margin="16px 0"
             backgroundcolor="var(--color-whiteFixed)"
@@ -77,10 +78,9 @@ export const HeaderMenu = () => {
             backgroundcolorhover="var(--color-greyScale-0)"
             title="Cadastrar"
             onClickHandler={() => navigate("/register")}
-            />
+          />
         </div>
       )}
     </>
-  )
-}
-
+  );
+};

@@ -11,7 +11,7 @@ export const StyledTagUser = styled.div<UserTagProps>`
   align-items: center;
   justify-content: start;
 
-  div {
+  .char {
     width: 32px;
     height: 32px;
 
@@ -25,4 +25,5 @@ export const StyledTagUser = styled.div<UserTagProps>`
     align-items: center;
     justify-content: center;
   }
+
 `;

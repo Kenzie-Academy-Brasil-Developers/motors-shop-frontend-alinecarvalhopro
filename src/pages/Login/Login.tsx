@@ -7,10 +7,9 @@ import { useUserContext } from "../../providers/UserContext";
 import { useEffect } from "react";
 
 const Login = () => {
-  const { autoLogin, getLoggedInUser } = useUserContext();
+  const { getLoggedInUser } = useUserContext();
 
   useEffect(() => {
-    autoLogin();
     getLoggedInUser();
   });
 

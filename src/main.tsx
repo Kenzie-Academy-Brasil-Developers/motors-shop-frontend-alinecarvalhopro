@@ -8,11 +8,11 @@ import App from "./App.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
-        <AnnouncementsProvider>
-          <App />
-        </AnnouncementsProvider>
-      </UserProvider>
+        <UserProvider>
+          <AnnouncementsProvider>
+            <App />
+          </AnnouncementsProvider>
+        </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

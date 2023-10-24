@@ -60,12 +60,14 @@ input {
     cursor: text;
 }
 
-button {
-	cursor: pointer;
-}
-
 input:disabled, button:disabled {
   cursor: not-allowed
+}
+
+@media (min-width: 769px) {
+  button, .imageCardProduct, .logo {
+    cursor: pointer;
+  }
 }
 `;
 

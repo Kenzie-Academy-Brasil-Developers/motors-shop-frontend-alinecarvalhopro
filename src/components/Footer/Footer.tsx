@@ -8,7 +8,7 @@ const Footer = () => {
     <StyledFooter>
       <img src={Logo} width={153.2} />
       <TextBody2 color="var(--color-whiteFixed)">
-        © 2022 - Todos os direitos reservados.
+        © 2023 - Todos os direitos reservados.
       </TextBody2>
       <ToTopButton />
     </StyledFooter>

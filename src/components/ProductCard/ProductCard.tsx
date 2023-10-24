@@ -24,6 +24,7 @@ const ProductCard = ({ announcements }: IProductCardPropos) => {
         >
           <div className="imageBoxProductCard">
             <img
+            className="imageCardProduct"
               src={
                 announcement.images.length > 0
                   ? announcement.images[0].url
