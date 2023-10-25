@@ -4,29 +4,13 @@ import { StyledModal, StyledModalContainer } from "./modal.styled";
 
 interface ModalProps {
   children: React.ReactNode;
-  width?: string;
-  height?: string;
-  margin?: string;
-  padding?: string;
   title: string;
 }
 
-const Modal = ({
-  children,
-  width,
-  height,
-  margin,
-  padding,
-  title,
-}: ModalProps) => {
+const Modal = ({ children, title }: ModalProps) => {
   return (
     <StyledModalContainer role="dialog">
-      <StyledModal
-        width={width}
-        height={height}
-        margin={margin}
-        padding={padding}
-      >
+      <StyledModal>
         <div className="titleCloseModalBox">
           <HeadingH3>{title}</HeadingH3>
           <CloseModalButton />

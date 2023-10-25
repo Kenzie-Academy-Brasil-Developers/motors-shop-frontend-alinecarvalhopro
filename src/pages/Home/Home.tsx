@@ -10,6 +10,7 @@ import { useUserContext } from "../../providers/UserContext";
 import TagUser, {
   UserOption,
 } from "../../components/fragments/TagUser/TagUser";
+
 const Home = () => {
   const { getAnnouncements, announcements } = useAnnouncementsContext();
   const { getLoggedInUser, user } = useUserContext();

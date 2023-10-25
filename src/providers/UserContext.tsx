@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import { IRegisterFormData } from "../components/Forms/RegisterForm/RegisterForm";
 import { ILoginFormData } from "../components/Forms/LoginForm/LoginForm";
 import jwt_decode from "jwt-decode";
+import { TUpdateUserPartial } from "../schemas/user/user.register";
 
 interface IUserProviderProps {
   children: ReactNode;
@@ -24,6 +25,13 @@ interface IUserContext {
   navigate: NavigateFunction;
   getUserById: (userId: string) => Promise<IUser | undefined>;
   getLoggedInUser: () => Promise<void>;
+  updateUser: (id: string, data: TUpdateUserPartial) => Promise<void>;
+  modalUpdateUserIsOpen: boolean;
+  setModalUpdateUserIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteUser: () => Promise<void>;
+  loadingDeleteUser: boolean;
+  modalUpdateAddressIsOpen: boolean;
+  setModalUpdateAddressIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IUser {
@@ -38,7 +46,7 @@ export interface IUser {
   seller: boolean;
 }
 
-interface IAddress {
+export interface IAddress {
   id: string;
   cep: string;
   state: string;
@@ -56,6 +64,10 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [modalUpdateUserIsOpen, setModalUpdateUserIsOpen] = useState(false);
+  const [loadingDeleteUser, setLoadingDeleteUser] = useState(false);
+  const [modalUpdateAddressIsOpen, setModalUpdateAddressIsOpen] =
+    useState(false);
 
   const navigate = useNavigate();
 
@@ -132,6 +144,43 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const updateUser = async (id: string, formData: TUpdateUserPartial) => {
+    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+    try {
+      await api.patch(`/users/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser({ ...user!, ...formData });
+      setModalUpdateUserIsOpen(false);
+      setModalUpdateAddressIsOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteUser = async () => {
+    setLoadingDeleteUser(true);
+    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+    const id = localStorage.getItem("@MOTORSSHOP:USERID");
+    try {
+      await api.delete(`/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      logout();
+      setModalUpdateUserIsOpen(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingDeleteUser(false);
+    }
+  };
+
+  useEffect(() => {}, [modalUpdateUserIsOpen, modalUpdateAddressIsOpen]);
+
   return (
     <UserContext.Provider
       value={{
@@ -142,6 +191,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         navigate,
         getLoggedInUser,
         getUserById,
+        updateUser,
+        modalUpdateUserIsOpen,
+        setModalUpdateUserIsOpen,
+        deleteUser,
+        loadingDeleteUser,
+        modalUpdateAddressIsOpen,
+        setModalUpdateAddressIsOpen,
       }}
     >
       {children}

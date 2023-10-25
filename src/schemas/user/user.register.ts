@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { addressSchema } from "./user.address";
+import { IUser } from "../../providers/UserContext";
 
 export const registerSchema = z
   .object({
@@ -32,4 +33,19 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
+export const updateUserSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().email().optional(),
+  cpf: z.string().optional(),
+  phone_number: z.string().optional(),
+  birth: z.string().optional(),
+  description: z.string().optional(),
+  address: addressSchema.optional(),
+  password: z.string().optional(),
+});
+
 export type TRegisterSchema = z.infer<typeof registerSchema>;
+
+export type TUpdateUser = Omit<IUser, "id" | "seller">;
+
+export type TUpdateUserPartial = Partial<TUpdateUser>;

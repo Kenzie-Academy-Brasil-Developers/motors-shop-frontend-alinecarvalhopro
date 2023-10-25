@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import Header, { HeaderMenu } from "../../components/Header/Header";
-import TagUser, { UserOption } from "../../components/fragments/TagUser/TagUser";
+import TagUser, {
+  UserOption,
+} from "../../components/fragments/TagUser/TagUser";
 import { useUserContext } from "../../providers/UserContext";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
-import { IAnnoucement, IComment, useAnnouncementsContext } from "../../providers/AnnouncementsContext";
+import {
+  IAnnoucement,
+  IComment,
+  useAnnouncementsContext,
+} from "../../providers/AnnouncementsContext";
 import Footer from "../../components/Footer/Footer";
 import { StyledPageContainer } from "../../styles/ProductPage/pageContainer";
 import NoImage from "../../assets/noImage.png";
@@ -23,7 +29,7 @@ interface ICommentRegister {
 
 const ProductPage = () => {
   const { user, getLoggedInUser, navigate } = useUserContext();
-  const {createComment} = useAnnouncementsContext()
+  const { createComment } = useAnnouncementsContext();
 
   const [announcement, setAnnouncement] = useState({} as IAnnoucement);
   const [firstImage, setFirstImage] = useState();
@@ -161,7 +167,11 @@ const ProductPage = () => {
                   errorMessage={errors.comment?.message}
                   {...register("comment")}
                 />
-              <Button type="submit" margin="16px 0 0 0" title={isSubmitted ? "Publicando" : "Comentar"} />
+                <Button
+                  type="submit"
+                  margin="16px 0 0 0"
+                  title={isSubmitted ? "Publicando" : "Comentar"}
+                />
               </form>
             </>
           ) : (

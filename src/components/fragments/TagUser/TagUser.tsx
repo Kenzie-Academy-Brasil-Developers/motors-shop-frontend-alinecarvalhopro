@@ -24,7 +24,13 @@ const TagUser = ({ children, char, margin, onClick }: TagUserProps) => {
 export default TagUser;
 
 export const UserOption = () => {
-  const { user } = useUserContext();
+  const {
+    user,
+    logout,
+    setModalUpdateUserIsOpen,
+    setModalUpdateAddressIsOpen
+  } = useUserContext();
+
   return (
     <div className="userOptions">
       <Button
@@ -33,6 +39,7 @@ export const UserOption = () => {
         backgroundcolorhover="var(--color-blackFixed)"
         textcolor="var(--color-greyScale-2)"
         title="Editar perfil"
+        onClickHandler={() => setModalUpdateUserIsOpen(true)}
       />
       <Button
         bordercolor="transparent"
@@ -40,6 +47,7 @@ export const UserOption = () => {
         backgroundcolorhover="var(--color-blackFixed)"
         textcolor="var(--color-greyScale-2)"
         title="Editar endereço"
+        onClickHandler={() => {setModalUpdateAddressIsOpen(true), console.log("o click funciona")}}
       />
       {user?.seller ? (
         <Button
@@ -56,6 +64,7 @@ export const UserOption = () => {
         backgroundcolorhover="var(--color-blackFixed)"
         textcolor="var(--color-greyScale-2)"
         title="Sair"
+        onClickHandler={() => logout()}
       />
     </div>
   );
