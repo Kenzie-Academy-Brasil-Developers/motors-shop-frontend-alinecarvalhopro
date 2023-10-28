@@ -12,7 +12,7 @@ import {
   useAnnouncementsContext,
 } from "../../providers/AnnouncementsContext";
 import Footer from "../../components/Footer/Footer";
-import { StyledPageContainer } from "../../styles/ProductPage/pageContainer";
+import { StyledPageContainer } from "./pageContainer";
 import NoImage from "../../assets/noImage.png";
 import { HeadingH2, HeadingH3, TextBody2 } from "../../styles/Text/text.styled";
 import TagDetail from "../../components/fragments/TagDatail/TagDetail";

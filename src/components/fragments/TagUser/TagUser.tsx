@@ -1,3 +1,4 @@
+import { useAnnouncementsContext } from "../../../providers/AnnouncementsContext";
 import { useUserContext } from "../../../providers/UserContext";
 import { TextBody2 } from "../../../styles/Text/text.styled";
 import Button from "../../Button/Button";
@@ -28,8 +29,11 @@ export const UserOption = () => {
     user,
     logout,
     setModalUpdateUserIsOpen,
-    setModalUpdateAddressIsOpen
+    setModalUpdateAddressIsOpen,
+    navigate,
+    scrollToTop,
   } = useUserContext();
+  const { setModalCreateAnnouncementIsOpen } = useAnnouncementsContext();
 
   return (
     <div className="userOptions">
@@ -39,7 +43,9 @@ export const UserOption = () => {
         backgroundcolorhover="var(--color-blackFixed)"
         textcolor="var(--color-greyScale-2)"
         title="Editar perfil"
-        onClickHandler={() => setModalUpdateUserIsOpen(true)}
+        onClickHandler={() => {
+          setModalUpdateUserIsOpen(true), scrollToTop();
+        }}
       />
       <Button
         bordercolor="transparent"
@@ -47,16 +53,31 @@ export const UserOption = () => {
         backgroundcolorhover="var(--color-blackFixed)"
         textcolor="var(--color-greyScale-2)"
         title="Editar endereço"
-        onClickHandler={() => {setModalUpdateAddressIsOpen(true), console.log("o click funciona")}}
+        onClickHandler={() => {
+          setModalUpdateAddressIsOpen(true), scrollToTop();
+        }}
       />
       {user?.seller ? (
-        <Button
-          bordercolor="transparent"
-          backgroundcolor="var(--color-whiteFixed)"
-          backgroundcolorhover="var(--color-blackFixed)"
-          textcolor="var(--color-greyScale-2)"
-          title="Cadastrar um veículo"
-        />
+        <>
+          <Button
+            bordercolor="transparent"
+            backgroundcolor="var(--color-whiteFixed)"
+            backgroundcolorhover="var(--color-blackFixed)"
+            textcolor="var(--color-greyScale-2)"
+            title="Gerenciar meus anúncios"
+            onClickHandler={() => navigate(`/seller/${user?.id}`)}
+          />
+          <Button
+            bordercolor="transparent"
+            backgroundcolor="var(--color-whiteFixed)"
+            backgroundcolorhover="var(--color-blackFixed)"
+            textcolor="var(--color-greyScale-2)"
+            title="Cadastrar um veículo"
+            onClickHandler={() => {
+              setModalCreateAnnouncementIsOpen(true), scrollToTop();
+            }}
+          />
+        </>
       ) : null}
       <Button
         bordercolor="transparent"

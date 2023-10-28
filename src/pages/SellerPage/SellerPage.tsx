@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { IUser, useUserContext } from "../../providers/UserContext";
 import Header, { HeaderMenu } from "../../components/Header/Header";
-import TagUser, { UserOption } from "../../components/fragments/TagUser/TagUser";
+import TagUser, {
+  UserOption,
+} from "../../components/fragments/TagUser/TagUser";
 import { HeadingH2, HeadingH3, TextBody2 } from "../../styles/Text/text.styled";
 import TagDetail from "../../components/fragments/TagDatail/TagDetail";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { StyledPageContainer } from "../../styles/SellerPage/pageConteiner";
+import { StyledPageContainer } from "./pageConteiner";
 import Footer from "../../components/Footer/Footer";
 import { api } from "../../services/api";
 import { useParams } from "react-router-dom";
@@ -13,7 +15,7 @@ import { IAnnoucement } from "../../providers/AnnouncementsContext";
 
 const SellerPage = () => {
   const { user, getLoggedInUser, getUserById } = useUserContext();
-  
+
   const [annoucements, setAnnoucements] = useState<IAnnoucement[] | []>([]);
   const [seller, setSeller] = useState<IUser | undefined>();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -80,7 +82,10 @@ const SellerPage = () => {
         <HeadingH2 className="announcementsTitle">Anúncios</HeadingH2>
         {annoucements.length > 0 ? (
           <ul>
-            <ProductCard announcements={annoucements} />
+            <ProductCard
+              has={seller?.id === user?.id ? true : false}
+              announcements={annoucements}
+            />
           </ul>
         ) : (
           <HeadingH2 margin="16px">

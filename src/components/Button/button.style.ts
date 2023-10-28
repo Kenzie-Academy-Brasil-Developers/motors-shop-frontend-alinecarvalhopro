@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface ButtonContainerProps {
   width?: string;
   margin?: string;
+  height?: string;
   bordercolor?: string;
   backgroundcolor?: string;
   backgroundcolorhover?: string;
@@ -12,7 +13,7 @@ interface ButtonContainerProps {
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
   ${(props) => (props.width ? `width: ${props.width};` : `width: 100%;`)};
-  height: 38px;
+  ${(props) => (props.height ? `height: ${props.height};` : `height: 38px;`)}; 
 
   margin: ${(props) => props.margin};
 
@@ -45,7 +46,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     props.textcolor ? props.textcolor : "var(--color-whiteFixed)"};
 
   @media (min-width: 769px) {
-    height: 48px;
+    ${(props) => (props.height ? `height: ${props.height};` : `height: 48px;`)}; 
 
     padding: 12px, 28px;
 

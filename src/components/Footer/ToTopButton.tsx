@@ -1,13 +1,9 @@
 import { StyledToTopButton } from "./toTopButton.style";
 import ImageButton from "../../assets/ctrl.svg";
+import { useUserContext } from "../../providers/UserContext";
 
 const ToTopButton = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", 
-    });
-  };
+  const { scrollToTop } = useUserContext();
 
   return (
     <StyledToTopButton onClick={scrollToTop}>
@@ -17,5 +13,3 @@ const ToTopButton = () => {
 };
 
 export default ToTopButton;
-
-

@@ -113,14 +113,14 @@ export const StyledPageContainer = styled.div`
     .userOptions {
       flex-direction: row;
     }
-    
+
     .boxSellerInformation {
       max-width: calc(100% - 264px);
     }
 
     main {
       width: 100%;
-      
+
       display: flex;
 
       justify-content: center;

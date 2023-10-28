@@ -5,7 +5,7 @@ import { useAnnouncementsContext } from "../../providers/AnnouncementsContext";
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Banner from "../../components/Banner/Banner";
-import { StyledPageContainer } from "../../styles/Home/pageConteiner";
+import { StyledPageContainer } from "./pageConteiner";
 import { useUserContext } from "../../providers/UserContext";
 import TagUser, {
   UserOption,

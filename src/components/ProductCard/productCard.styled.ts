@@ -4,8 +4,8 @@ export const StyledCardProduct = styled.li`
   min-width: 312px;
   min-height: 350px;
 
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin-right: 50px;
+  margin-bottom: 50px;
 
   display: flex;
   flex-direction: column;
@@ -30,7 +30,9 @@ export const StyledCardProduct = styled.li`
     align-items: center;
     justify-content: center;
 
-    img {
+    position: relative;
+
+    .imageCardProduct {
       width: 100%;
       height: 100%;
 
@@ -39,9 +41,17 @@ export const StyledCardProduct = styled.li`
       transition: 0.8s;
 
     }
-    
-    img:hover {
+
+    .imageCardProduct:hover {
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .open {
+      background-color: white;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
     }
   }
 
@@ -81,4 +91,9 @@ export const StyledCardProduct = styled.li`
       max-width: 312px;
     }
   }
+`;
+
+export const StyledSellerButtonsBoxOnCardProduct = styled.div`
+  display: flex;
+  align-items: center;
 `;

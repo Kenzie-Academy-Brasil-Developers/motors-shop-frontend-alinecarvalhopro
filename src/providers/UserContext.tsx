@@ -32,6 +32,7 @@ interface IUserContext {
   loadingDeleteUser: boolean;
   modalUpdateAddressIsOpen: boolean;
   setModalUpdateAddressIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  scrollToTop: () => void;
 }
 
 export interface IUser {
@@ -179,7 +180,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  useEffect(() => {}, [modalUpdateUserIsOpen, modalUpdateAddressIsOpen]);
+  useEffect(() => {}, [modalUpdateUserIsOpen, modalUpdateAddressIsOpen, user]);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <UserContext.Provider
@@ -198,6 +206,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         loadingDeleteUser,
         modalUpdateAddressIsOpen,
         setModalUpdateAddressIsOpen,
+        scrollToTop,
       }}
     >
       {children}
