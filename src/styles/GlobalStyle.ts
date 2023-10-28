@@ -65,7 +65,7 @@ input:disabled, button:disabled {
 }
 
 @media (min-width: 769px) {
-  button, .imageCardProduct, .logo {
+  button, .imageCardProduct, .logo, .binButton {
     cursor: pointer;
   }
 }

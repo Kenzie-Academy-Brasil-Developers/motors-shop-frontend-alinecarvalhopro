@@ -6,11 +6,7 @@ import TagUser, {
 import { useUserContext } from "../../providers/UserContext";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
-import {
-  IAnnoucement,
-  IComment,
-  useAnnouncementsContext,
-} from "../../providers/AnnouncementsContext";
+import { IAnnoucement, IComment } from "../../providers/AnnouncementsContext";
 import Footer from "../../components/Footer/Footer";
 import { StyledPageContainer } from "./pageContainer";
 import NoImage from "../../assets/noImage.png";
@@ -21,52 +17,89 @@ import CommentCard from "../../components/CommentCard/CommentCard";
 import { SubmitHandler, useForm } from "react-hook-form";
 import InputContainer from "../../components/InputContainer/InputContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { commentSchema } from "../../schemas/comment/commet";
+import { TCommentSchema, commentSchema } from "../../schemas/comment/commet";
 
 interface ICommentRegister {
   comment: string;
 }
 
 const ProductPage = () => {
+  const { id } = useParams();
   const { user, getLoggedInUser, navigate } = useUserContext();
-  const { createComment } = useAnnouncementsContext();
 
   const [announcement, setAnnouncement] = useState({} as IAnnoucement);
   const [firstImage, setFirstImage] = useState();
-  const [comments, setComments] = useState<IComment[] | []>([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [comments, setComments] = useState<IComment[] | []>([]);
+
+  useEffect(() => {
+    getLoggedInUser();
+    getAnnouncement();
+  }, []);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const { id } = useParams();
+  const getAnnouncement = async () => {
+    const { data } = await api.get(`/announcements/${id}`);
+    setAnnouncement(data.message);
+    if (data.message.images && data.message.images.length > 0) {
+      setFirstImage(data.message.images[0].url);
+    }
+    if (data.message.comments && data.message.comments.length > 0) {
+      setComments(data.message.comments);
+    }
+  };
+
+  const createComment = async (id: string, formData: TCommentSchema) => {
+    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+    try {
+      const { data } = await api.post(
+        `/comments/announcements/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setComments([...comments, data] as IComment[]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteComment = async (id: string) => {
+    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+
+    try {
+      await api.delete(`/comments/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.id !== id)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors, isLoading },
+    reset,
   } = useForm<ICommentRegister>({
     resolver: zodResolver(commentSchema),
   });
 
   const submit: SubmitHandler<ICommentRegister> = (formData) => {
     createComment(id!, formData);
+    reset();
   };
-
-  useEffect(() => {
-    getLoggedInUser();
-    const getAnnouncement = async () => {
-      const { data } = await api.get(`/announcements/${id}`);
-      setAnnouncement(data.message);
-      if (data.message.images && data.message.images.length > 0) {
-        setFirstImage(data.message.images[0].url);
-      }
-      if (data.message.comments && data.message.comments.length > 0) {
-        setComments(data.message.comments);
-      }
-    };
-    getAnnouncement();
-  }, [comments]);
 
   return (
     <StyledPageContainer>
@@ -146,12 +179,26 @@ const ProductPage = () => {
           />
         </section>
         <section className="boxComments">
-          <HeadingH2 margin="0 0 16px 0" fontSize="16px" fontWeight="600">
-            Comentários
-          </HeadingH2>
-          <ul>
-            <CommentCard comments={comments} />
-          </ul>
+          {comments.length > 0 ? (
+            <>
+              <HeadingH2 margin="0 0 16px 0" fontSize="16px" fontWeight="600">
+                Comentários
+              </HeadingH2>
+              {!isLoading ? (
+                <ul>
+                  <CommentCard
+                    comments={comments}
+                    announcement={announcement}
+                    deleteComment={deleteComment}
+                  />
+                </ul>
+              ) : null}
+            </>
+          ) : (
+            <HeadingH2 margin="0 0 16px 0" fontSize="16px" fontWeight="600">
+              Ainda não há comentários nesse anúncio.
+            </HeadingH2>
+          )}
         </section>
         <section className="boxToComment">
           {user ? (
@@ -170,7 +217,7 @@ const ProductPage = () => {
                 <Button
                   type="submit"
                   margin="16px 0 0 0"
-                  title={isSubmitted ? "Publicando" : "Comentar"}
+                  title={isLoading ? "Publicando" : "Comentar"}
                 />
               </form>
             </>

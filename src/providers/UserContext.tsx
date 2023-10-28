@@ -119,23 +119,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  useEffect(() => {
-    const autoLogin = async () => {
-      const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
-      const id = localStorage.getItem("@MOTORSSHOP:USERID");
-      if (!token && !id) {
-        logout();
-      }
-    };
-    autoLogin();
-  }, []);
-
-  const logout = () => {
-    localStorage.removeItem("@MOTORSSHOP:TOKEN");
-    localStorage.removeItem("@MOTORSSHOP:USERID");
-    setUser(null);
-  };
-
   const getUserById = async (userId: string) => {
     try {
       const { data } = await api.get<IUser>(`/users/${userId}`);
@@ -180,7 +163,22 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  useEffect(() => {}, [modalUpdateUserIsOpen, modalUpdateAddressIsOpen, user]);
+  useEffect(() => {
+    const autoLogin = async () => {
+      const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
+      const id = localStorage.getItem("@MOTORSSHOP:USERID");
+      if (!token && !id) {
+        logout();
+      }
+    };
+    autoLogin();
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("@MOTORSSHOP:TOKEN");
+    localStorage.removeItem("@MOTORSSHOP:USERID");
+    setUser(null);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({

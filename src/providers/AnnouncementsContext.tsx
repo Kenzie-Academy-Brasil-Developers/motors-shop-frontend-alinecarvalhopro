@@ -1,14 +1,7 @@
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 import { IUser } from "./UserContext";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { TCommentSchema } from "../schemas/comment/commet";
 import {
   TCreateAnnouncemet,
   TUpdateAnnouncementPartial,
@@ -23,7 +16,6 @@ interface IAnnouncementsContext {
   announcements: IAnnoucement[] | [];
   setAnnouncements: React.Dispatch<React.SetStateAction<[] | IAnnoucement[]>>;
   navigate: NavigateFunction;
-  createComment: (id: string, formData: TCommentSchema) => Promise<void>;
   createAnnouncement: (formData: TCreateAnnouncemet) => Promise<void>;
   modalCreateAnnouncementIsOpen: boolean;
   setModalCreateAnnouncementIsOpen: React.Dispatch<
@@ -43,6 +35,7 @@ interface IAnnouncementsContext {
   getAnnouncementById: (id: string) => Promise<void>;
   announcement: IAnnoucement | null;
   removeAnnouncementIdLocalStorage: () => void;
+  setAnnouncement: React.Dispatch<React.SetStateAction<null>>;
 }
 
 export interface IAnnoucement {
@@ -83,6 +76,7 @@ export const AnnouncementsProvider = ({
     useState(false);
   const [loadingDeleteAnnouncement, setLoadingDeleteAnnouncement] =
     useState(false);
+  const [announcement, setAnnouncement] = useState(null);
 
   const navigate = useNavigate();
 
@@ -95,24 +89,10 @@ export const AnnouncementsProvider = ({
     }
   };
 
-  const [announcement, setAnnouncement] = useState(null);
   const getAnnouncementById = async (id: string) => {
     try {
       const { data } = await api.get(`/announcements/${id}`);
       setAnnouncement(data.message);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const createComment = async (id: string, formData: TCommentSchema) => {
-    const token = localStorage.getItem("@MOTORSSHOP:TOKEN");
-    try {
-      await api.post(`/comments/announcements/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
     } catch (error) {
       console.log(error);
     }
@@ -132,8 +112,6 @@ export const AnnouncementsProvider = ({
       console.log(error);
     }
   };
-
-  useEffect(() => {}, [modalCreateAnnouncementIsOpen, announcements]);
 
   const updateAnnouncement = async (
     id: string,
@@ -184,7 +162,6 @@ export const AnnouncementsProvider = ({
         announcements,
         setAnnouncements,
         navigate,
-        createComment,
         createAnnouncement,
         modalCreateAnnouncementIsOpen,
         setModalCreateAnnouncementIsOpen,
@@ -197,6 +174,7 @@ export const AnnouncementsProvider = ({
         getAnnouncementById,
         announcement,
         removeAnnouncementIdLocalStorage,
+        setAnnouncement,
       }}
     >
       {children}

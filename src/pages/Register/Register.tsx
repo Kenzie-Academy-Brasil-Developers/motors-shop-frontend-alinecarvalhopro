@@ -11,7 +11,7 @@ const Register = () => {
 
   useEffect(() => {
     getLoggedInUser();
-  });
+  }, []);
   
   return (
     <StyledPageContainer>
