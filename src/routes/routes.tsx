@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import SellerPage from "../pages/SellerPage/SellerPage";
+import NotFound from "../pages/NotFound/NotFound";
 
 const RoutesMain = () => {
   return (
@@ -13,6 +14,7 @@ const RoutesMain = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/product/:id" element={<ProductPage />} />
       <Route path="/seller/:id" element={<SellerPage />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
