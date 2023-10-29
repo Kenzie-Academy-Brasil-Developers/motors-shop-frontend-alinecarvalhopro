@@ -6,6 +6,7 @@ import {
   TCreateAnnouncemet,
   TUpdateAnnouncementPartial,
 } from "../schemas/announcement/announcement.create.schema";
+import toast from "react-hot-toast";
 
 interface IAnnouncementsProviderProps {
   children: ReactNode;
@@ -108,8 +109,24 @@ export const AnnouncementsProvider = ({
       });
       setModalCreateAnnouncementIsOpen(false);
       setAnnouncements([...announcements, data]);
+      toast(`🚗 Anúncio criado com sucesso!`, {
+        style: {
+          border: '2px solid var(--color-feedback-success-1)',
+          padding: '16px',
+          color: 'var(--color-feedback-success-1)',
+          backgroundColor: 'var(--color-feedback-success-3)'
+        },
+      });
     } catch (error) {
       console.log(error);
+      toast(`🚫 Ops, algo deu errado`, {
+        style: {
+          border: '2px solid var(--color-feedback-alert-1)',
+          padding: '16px',
+          color: 'var(--color-feedback-alert-1)',
+          backgroundColor: 'var(--color-feedback-alert-3)'
+        },
+      });
     }
   };
 
@@ -128,8 +145,24 @@ export const AnnouncementsProvider = ({
       setAnnouncements([...announcements, data]);
       removeAnnouncementIdLocalStorage();
       setModalUpdateAnnouncementIsOpen(false);
+      toast(`🚗 Anúncio atualizado com sucesso!`, {
+        style: {
+          border: '2px solid var(--color-feedback-success-1)',
+          padding: '16px',
+          color: 'var(--color-feedback-success-1)',
+          backgroundColor: 'var(--color-feedback-success-3)'
+        },
+      });
     } catch (error) {
       console.log(error);
+      toast(`🚫 Ops, algo deu errado`, {
+        style: {
+          border: '2px solid var(--color-feedback-alert-1)',
+          padding: '16px',
+          color: 'var(--color-feedback-alert-1)',
+          backgroundColor: 'var(--color-feedback-alert-3)'
+        },
+      });
     }
   };
 
@@ -144,8 +177,24 @@ export const AnnouncementsProvider = ({
       });
       removeAnnouncementIdLocalStorage();
       setModalUpdateAnnouncementIsOpen(false);
+      toast(`🚗 Anúncio removido com sucesso!`, {
+        style: {
+          border: '2px solid var(--color-feedback-success-1)',
+          padding: '16px',
+          color: 'var(--color-feedback-success-1)',
+          backgroundColor: 'var(--color-feedback-success-3)'
+        },
+      });
     } catch (error) {
       console.log(error);
+      toast(`🚫 Ops, algo deu errado`, {
+        style: {
+          border: '2px solid var(--color-feedback-alert-1)',
+          padding: '16px',
+          color: 'var(--color-feedback-alert-1)',
+          backgroundColor: 'var(--color-feedback-alert-3)'
+        },
+      });
     } finally {
       setLoadingDeleteAnnouncement(false);
     }
