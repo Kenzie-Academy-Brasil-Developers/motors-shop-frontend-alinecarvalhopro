@@ -21,7 +21,7 @@ _Aplicação de venda de veículos._
    - `npm install` (Para instalar as dependências do projeto) <br/>
    - `npm run dev` (Para rodar o projeto) <br/>
 
-- Porém se quiser apenas visitar e testar a plicação, sem clonar o repositório, pode acessar diretamente através da URL: https://motors-shop-alinecarvalho.vercel.app
+- Porém se quiser apenas visitar e testar a aplicação, sem clonar o repositório, pode acessar diretamente através da URL: https://motors-shop-alinecarvalho.vercel.app
 
 ### Tecnologias utilizadas:
 
