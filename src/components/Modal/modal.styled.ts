@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const StyledModalContainer = styled.div`
   max-width: 100%;
+  min-height: 100vh;
 
   padding-bottom: 200px;
   
   background-color: #00000080;
 
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -21,6 +22,9 @@ export const StyledModalContainer = styled.div`
 
 export const StyledModal = styled.div`
   width: calc(100% - 64px);
+  max-height: 500px; 
+
+  overflow-y: auto;
   
   margin: 80px 16px 16px 16px;
   
@@ -44,7 +48,7 @@ export const StyledModal = styled.div`
   }
 
   @media (min-width: 769px) {
-    width: 520px;
+    width: 569px;
 
     margin: 80px 0 0 0;
   }

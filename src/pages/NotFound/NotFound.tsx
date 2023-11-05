@@ -1,7 +1,7 @@
-import ImageNotFound from "../../assets/notFound.png";
-import Button from "../../components/Button/Button";
 import { useUserContext } from "../../providers/UserContext";
 import { StyledPageContainer } from "./notFound.style";
+import ImageNotFound from "../../assets/notFound.png";
+import Button from "../../components/Button/Button";
 
 export const NotFound = () => {
   const { navigate } = useUserContext();

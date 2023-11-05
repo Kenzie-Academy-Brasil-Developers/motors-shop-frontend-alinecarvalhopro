@@ -1,10 +1,10 @@
-import Footer from "../../components/Footer/Footer";
-import { Header, HeaderMenu } from "../../components/Header/Header";
-import RegisterForm from "../../components/Forms/RegisterForm/RegisterForm";
-import { StyledRegisterLoginMain } from "../../styles/SheredRegisterLogin/registerLoginMain.styled";
-import { StyledPageContainer } from "../../styles/SheredRegisterLogin/pageContainer";
 import { useEffect } from "react";
 import { useUserContext } from "../../providers/UserContext";
+import { Header, HeaderMenu } from "../../components/Header/Header";
+import { StyledRegisterLoginMain } from "../../styles/SheredRegisterLogin/registerLoginMain.styled";
+import { StyledPageContainer } from "./pageContainer";
+import RegisterForm from "../../components/Forms/RegisterForm/RegisterForm";
+// import Footer from "../../components/Footer/Footer";
 
 const Register = () => {
   const { getLoggedInUser } = useUserContext();
@@ -12,7 +12,7 @@ const Register = () => {
   useEffect(() => {
     getLoggedInUser();
   }, []);
-  
+
   return (
     <StyledPageContainer>
       <Header>
@@ -21,7 +21,7 @@ const Register = () => {
       <StyledRegisterLoginMain>
         <RegisterForm />
       </StyledRegisterLoginMain>
-      <Footer />
+      {/* <Footer /> */}
     </StyledPageContainer>
   );
 };

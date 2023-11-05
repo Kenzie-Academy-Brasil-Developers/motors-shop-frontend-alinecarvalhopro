@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
+import { IAnnoucement } from "../../providers/AnnouncementsContext";
 import { IUser, useUserContext } from "../../providers/UserContext";
+import { StyledPageContainer } from "./pageConteiner";
 import Header, { HeaderMenu } from "../../components/Header/Header";
 import TagUser, {
   UserOption,
@@ -7,11 +11,7 @@ import TagUser, {
 import { HeadingH2, HeadingH3, TextBody2 } from "../../styles/Text/text.styled";
 import TagDetail from "../../components/fragments/TagDatail/TagDetail";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { StyledPageContainer } from "./pageConteiner";
-import Footer from "../../components/Footer/Footer";
-import { api } from "../../services/api";
-import { useParams } from "react-router-dom";
-import { IAnnoucement } from "../../providers/AnnouncementsContext";
+// import Footer from "../../components/Footer/Footer";
 
 const SellerPage = () => {
   const { user, getLoggedInUser, getUserById } = useUserContext();
@@ -93,7 +93,7 @@ const SellerPage = () => {
           </HeadingH2>
         )}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </StyledPageContainer>
   );
 };

@@ -13,12 +13,12 @@ export interface ILoginFormData {
 }
 
 const LoginForm = () => {
-  const { submitLogin, navigate } = useUserContext();
+  const { submitLogin, loadingLogin, navigate } = useUserContext();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm<ILoginFormData>({
     resolver: zodResolver(loginSchema),
   });
@@ -52,7 +52,7 @@ const LoginForm = () => {
         <Button
           backgroundcolorhover="var(--color-brand-2)"
           type="submit"
-          title={isSubmitted ? "Entrando" : "Entrar"}
+          title={loadingLogin ? "Entrando" : "Entrar"}
         />
         <TextBody2
           margin="12px 0 0 0"

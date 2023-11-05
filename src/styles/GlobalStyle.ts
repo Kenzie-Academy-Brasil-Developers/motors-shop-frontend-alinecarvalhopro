@@ -53,6 +53,17 @@ html, body, h3, fieldset, ul {
 }
 body {
   background-color: var(--color-greyScale-7);
+
+  @media (min-width: 2000px) {
+  
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+  }
 }
 
 /* Action Cursor  */

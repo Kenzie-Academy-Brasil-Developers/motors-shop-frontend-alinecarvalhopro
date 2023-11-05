@@ -34,6 +34,8 @@ interface IUserContext {
   modalUpdateAddressIsOpen: boolean;
   setModalUpdateAddressIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   scrollToTop: () => void;
+  setLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  loadingLogin: boolean
 }
 
 export interface IUser {
@@ -68,6 +70,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [modalUpdateUserIsOpen, setModalUpdateUserIsOpen] = useState(false);
   const [loadingDeleteUser, setLoadingDeleteUser] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
   const [modalUpdateAddressIsOpen, setModalUpdateAddressIsOpen] =
     useState(false);
 
@@ -106,6 +109,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   };
 
   const submitLogin = async (formData: ILoginFormData) => {
+    setLoadingLogin(true);
     try {
       const { data } = await api.post<IUserLoginResponse>("/login", formData);
       const decodedToken = jwt_decode(data.token) as {
@@ -138,6 +142,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           backgroundColor: 'var(--color-feedback-alert-3)'
         },
       });
+    } finally {
+      setLoadingLogin(false);
     }
   };
 
@@ -234,14 +240,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const logout = () => {
     localStorage.removeItem("@MOTORSSHOP:TOKEN");
     localStorage.removeItem("@MOTORSSHOP:USERID");
-    toast(`🚗 Até logo ${user?.name}!`, {
-      style: {
-        border: '2px solid var(--color-feedback-success-1)',
-        padding: '16px',
-        color: 'var(--color-feedback-success-1)',
-        backgroundColor: 'var(--color-feedback-success-3)'
-      },
-    });
     setTimeout(() => {
       setUser(null);
     }, 2000);
@@ -272,6 +270,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         modalUpdateAddressIsOpen,
         setModalUpdateAddressIsOpen,
         scrollToTop,
+        setLoadingLogin,
+        loadingLogin
       }}
     >
       {children}

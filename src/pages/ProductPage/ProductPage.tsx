@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useUserContext } from "../../providers/UserContext";
+import { StyledPageContainer } from "./pageContainer";
+import { IAnnoucement, IComment } from "../../providers/AnnouncementsContext";
 import Header, { HeaderMenu } from "../../components/Header/Header";
 import TagUser, {
   UserOption,
 } from "../../components/fragments/TagUser/TagUser";
-import { useUserContext } from "../../providers/UserContext";
-import { useParams } from "react-router-dom";
-import { api } from "../../services/api";
-import { IAnnoucement, IComment } from "../../providers/AnnouncementsContext";
-import Footer from "../../components/Footer/Footer";
-import { StyledPageContainer } from "./pageContainer";
-import NoImage from "../../assets/noImage.png";
 import { HeadingH2, HeadingH3, TextBody2 } from "../../styles/Text/text.styled";
 import TagDetail from "../../components/fragments/TagDatail/TagDetail";
 import Button from "../../components/Button/Button";
 import CommentCard from "../../components/CommentCard/CommentCard";
-import { SubmitHandler, useForm } from "react-hook-form";
 import InputContainer from "../../components/InputContainer/InputContainer";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { TCommentSchema, commentSchema } from "../../schemas/comment/commet";
+import NoImage from "../../assets/noImage.png";
+// import Footer from "../../components/Footer/Footer";
 
 interface ICommentRegister {
   comment: string;
@@ -230,7 +230,7 @@ const ProductPage = () => {
           )}
         </section>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </StyledPageContainer>
   );
 };

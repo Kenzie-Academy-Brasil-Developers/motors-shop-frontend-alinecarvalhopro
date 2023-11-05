@@ -35,13 +35,6 @@ export const StyledPageContainer = styled.div`
     margin: 16px 0 16px 16px;
   }
 
-  footer {
-    position: static;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
   @media (min-width: 769px) {
     .userOptions {
       flex-direction: row;

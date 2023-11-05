@@ -182,7 +182,7 @@ const EditAnnouncementForm = () => {
               backgroundcolorhover="var(--color-brand-2)"
               bordercolor="transparent"
               type="submit"
-              title={isSubmitted ? "Aguarde" : "Criar anúncio"}
+              title={isSubmitted ? "Aguarde" : "Editar anúncio"}
             />
             <div className="boxButtons">
               <Button

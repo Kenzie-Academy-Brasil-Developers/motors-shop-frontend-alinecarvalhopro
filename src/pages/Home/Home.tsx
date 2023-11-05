@@ -1,15 +1,15 @@
-import Header, { HeaderMenu } from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import { HeadingH2 } from "../../styles/Text/text.styled";
-import { useAnnouncementsContext } from "../../providers/AnnouncementsContext";
 import { useEffect, useState } from "react";
+import { useUserContext } from "../../providers/UserContext";
+import { useAnnouncementsContext } from "../../providers/AnnouncementsContext";
+import { StyledPageContainer } from "./pageConteiner";
+import Header, { HeaderMenu } from "../../components/Header/Header";
+import { HeadingH2 } from "../../styles/Text/text.styled";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Banner from "../../components/Banner/Banner";
-import { StyledPageContainer } from "./pageConteiner";
-import { useUserContext } from "../../providers/UserContext";
 import TagUser, {
   UserOption,
 } from "../../components/fragments/TagUser/TagUser";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const { getAnnouncements, announcements } = useAnnouncementsContext();
