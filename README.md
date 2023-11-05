@@ -16,17 +16,19 @@ _Aplicação de venda de veículos._
 
 ### Requisitos para instalação e uso:
 
-- Seguir os requisitos de instalação e uso do Backend: https://github.com/Kenzie-Academy-Brasil-Developers/motors-shop-backend-alinecarvalhopro
 - Clonar o repositório
 - Rodar os comandos: <br/>
    - `npm install` (Para instalar as dependências do projeto) <br/>
    - `npm run dev` (Para rodar o projeto) <br/>
+
+- Porém se quiser apenas visitar e testar a aplicação, sem clonar o repositório, pode acessar diretamente através da URL: https://motors-shop-alinecarvalho.vercel.app
 
 ### Tecnologias utilizadas:
 
 - React js 
 - TypeScript
 - Vite
+- Vercel
 
 ### Bibliotecas:
 
@@ -39,6 +41,14 @@ _Aplicação de venda de veículos._
 - react-hot-toast
 - react-router-dom
 - styled-components
+
+### Esta é uma aplicação Full-Stack 💡
+
+- Link para o Back-end: <br/>
+https://github.com/Kenzie-Academy-Brasil-Developers/motors-shop-backend-alinecarvalhopro
+
+
+
 
 
 # React + TypeScript + Vite
